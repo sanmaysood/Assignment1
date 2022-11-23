@@ -34,7 +34,7 @@ void shell_loop(){
     char ** arguments;
     int s;
     line = readline();
-    arguments = parseline(line);
+    arguments = parse_line(line);
     s = run(arguments);
 
     free(line);
@@ -42,7 +42,7 @@ void shell_loop(){
 
     while(s){
     line = readline();
-    arguments = parseline(line);
+    arguments = parse_line(line);
     s = run(arguments);
 
     free(line);
@@ -57,7 +57,7 @@ char * readline(){
     return line;
 }
 
-char ** parseline(char * line){
+char ** parse_line(char * line){
     char ** arguments = malloc(128 * sizeof(char *));
     char * token;
     int i = 0;
@@ -172,14 +172,9 @@ int internal_commands(char ** arguments){
                     printf("%s",arguments[i]);
                 }
             }
-        
-            else{
-                for(int i = 1; i < number; i++){
-                    printf("%s ",arguments[i]);
-                }
-            }
         }
     }
+
     else if(strcmp(arguments[0],"pwd") == 0){
         if(number == 1){
             char cwd[1024];
