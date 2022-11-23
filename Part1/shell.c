@@ -35,7 +35,7 @@ void shell_loop(){
     int s;
     line = readline();
     arguments = parse_line(line);
-    s = run(arguments);
+    s = interpret(arguments);
 
     free(line);
     free(arguments);
@@ -43,7 +43,7 @@ void shell_loop(){
     while(s){
     line = readline();
     arguments = parse_line(line);
-    s = run(arguments);
+    s = interpret(arguments);
 
     free(line);
     free(arguments);
