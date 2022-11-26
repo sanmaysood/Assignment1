@@ -21,7 +21,7 @@ int internal_commands(char ** arguments);
 
 int external_commands(char ** arguments);
 
-void * thread_function(void * arg);
+void * thread_function(char ** args);
 
 int main(int argc, char ** argv) {
 
