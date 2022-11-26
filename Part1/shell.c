@@ -21,6 +21,7 @@ int internal_commands(char ** arguments);
 
 int external_commands(char ** arguments);
 
+void * thread_function(void * arg);
 
 int main(int argc, char ** argv) {
 
@@ -66,17 +67,29 @@ char ** parse_line(char * line){
 }
 
 int interpret(char ** arguments){
-    if(arguments[0] == NULL){
-        return 1;
+
+    int size = sizeof(arguments)/sizeof(arguments[0]);
+
+    if(strcmp(arguments[size],"&t") == 0){
+        pthread_t tid;
+        pthread_create(&tid, NULL, &thread_function, arguments);
+        pthread_join(tid, NULL);
     }
 
-    else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
-        return internal_commands(arguments);
-    }
-    
     else {
+
+        if(arguments[0] == NULL){
+        return 1;
+        }
+
+        else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
+            return internal_commands(arguments);
+        }
+    
+        else {
             return external_commands(arguments);
         }
+    }
 }
 
 
@@ -300,4 +313,17 @@ int external_commands(char ** arguments){
     }
     
     return 1;
+}
+
+
+void * thread_function(char ** args){
+
+    char command[100000];
+    for(int i = 0; args[i] != NULL; i++){
+        strcat(command,args[i]);
+        strcat(command," ");
+    }
+
+    system(command);    
+    pthread_exit(NULL);
 }
