@@ -36,11 +36,11 @@ int main(int argc, char ** args){
             printf("%s, %d %s 2022 %d:%d:%d +0530\n", week_day,time->tm_mday,month_name , time->tm_hour, time->tm_min, time->tm_sec);
         }
         else{
-            printf("Invalid command\n");
+            perror("Invalid command\n");
         }
     }
     else{
-        printf("Invalid command\n");
+        perror("Too many arguments\n");
     }
     return 0;
 }
