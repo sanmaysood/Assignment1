@@ -38,13 +38,11 @@ int main(int argc, char ** args){
             closedir(D);
         }
         else{
-            printf("Invalid command\n");
+            perror("Invalid command\n");
         }
    }
    else{
-         printf("Invalid command\n");
+         perror("Too many arguments\n");
    }
    return 0;
 }
-
-
