@@ -4,14 +4,12 @@ run:
 	gcc date.c -o date
 	gcc mkdir.c -o mkdir
 	gcc rm.c -o rm
-	gcc shell.c
+	gcc shell.c -o shell -lpthread
 	clear
-	./a.out
-
 clear:
 	rm ls
-	rm a.out
+	rm rm
 	rm cat
 	rm date
 	rm mkdir
-	rm rm
+	rm shell
