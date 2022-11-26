@@ -5,6 +5,7 @@ run:
 	gcc mkdir.c -o mkdir
 	gcc rm.c -o rm
 	gcc shell.c -o shell -lpthread
+	./shell
 	clear
 clear:
 	rm ls
