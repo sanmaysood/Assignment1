@@ -5,13 +5,17 @@
 #include <string.h>
 #include <dirent.h>
 
-
 int main(int argc, char ** args){
-     struct dirent *dir;
-        DIR *D;
-        D = opendir(".");
+    struct dirent *dir;
+    DIR *D;
+    D = opendir(".");
+
+    if(D == NULL){
+        printf("Directory does not exist\n");
+    }
 
    if(argc == 1){
+
         while((dir = readdir(D)) != NULL){
             if(strcmp(dir->d_name,".") != 0 && strcmp(dir->d_name,"..") != 0){
             printf("%s \n", dir->d_name);
@@ -19,14 +23,18 @@ int main(int argc, char ** args){
         }
         closedir(D);
    }
+
    else if(argc == 2){
+
         if(strcmp(args[1],"-a") == 0){
     
             while((dir = readdir(D)) != NULL){
                 printf("%s \n", dir->d_name);
             }
+
             closedir(D);
         }
+
         else if(strcmp(args[1],"-m") == 0){
            
             while((dir = readdir(D)) != NULL){
@@ -37,12 +45,17 @@ int main(int argc, char ** args){
             
             closedir(D);
         }
+
         else{
-            perror("Invalid command\n");
+            printf("Invalid command\n");
         }
    }
+
    else{
-         perror("Too many arguments\n");
+         printf("Too many arguments\n");
    }
+   
    return 0;
 }
+
+
