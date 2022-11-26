@@ -9,8 +9,6 @@
 # include <sys/wait.h>
 
 
-void shell_loop();
-
 char * readline();
 
 char ** parse_line(char * line);
@@ -21,16 +19,12 @@ int internal_commands(char ** arguments);
 
 int external_commands(char ** arguments);
 
-void * thread_function(char ** args);
+void * thread_function(void * arg);
+
+
 
 int main(int argc, char ** argv) {
 
-    shell_loop();
-
-    return 0;
-}
-
-void shell_loop(){
     char * line;
     char ** arguments;
     int s = 1;
@@ -43,8 +37,13 @@ void shell_loop(){
 
     free(line);
     free(arguments);
-    }  
+    } 
+
+    return 0;
 }
+ 
+
+
 
 char * readline(){
     char * line = NULL;
@@ -65,6 +64,7 @@ char ** parse_line(char * line){
     arguments[i] = NULL;
     return arguments;
 }
+
 
 int interpret(char ** arguments){
 
@@ -97,7 +97,7 @@ int internal_commands(char ** arguments){
     int number = sizeof(arguments)/sizeof(char *);
     if(strcmp(arguments[0],"cd") == 0){
         if(arguments[1] == NULL){
-            printf("Error: No directory specified\n");
+            perror("No arguments passed\n");
         }
         else if(number == 2 && strcmp(arguments[1],"~") == 0){
             chdir(getenv("HOME"));
@@ -122,16 +122,17 @@ int internal_commands(char ** arguments){
             chdir(path);
         }
         else{
-            printf("Error: Too many arguments\n");
+            perror("Too many arguments\n");
         }
     }
     else if(strcmp(arguments[0],"echo") == 0){
         if(arguments[1] == NULL){
-            printf("Error: No argument specified\n");
+            perror("No arguments passed\n");
         }
         else if(number == 2){
             printf("%s",arguments[1]);
         }
+
         else if(number > 2){
             if(strcmp(arguments[1],"-n") == 0){
                 for(int i = 2; i < number; i++){
@@ -201,7 +202,7 @@ int internal_commands(char ** arguments){
                 printf("%s\n",cwd);
             }
             else{
-                printf("Error: Too many arguments\n");
+                perror("Too many arguments\n");
             }
         }
     }
@@ -209,9 +210,11 @@ int internal_commands(char ** arguments){
         if(number == 1){
             return 0;
         }
+
         else{
-            printf("Error: Too many arguments\n");
+            perror("Too many arguments\n");
         }
+                
     }
     return 1;
 }
@@ -225,12 +228,12 @@ int external_commands(char ** arguments){
         if(pid == 0){
             int ret = execvp(arguments[0],arguments);
             if(ret == -1){
-                printf("Error in execvp \n");
+                perror("Error in execvp\n");
                 return 0;
             }
         }
         else if(pid < 0){
-            printf("Error: Fork failed\n");
+            perror("Fork failed\n");
             return 0;
         }
         else{
@@ -243,12 +246,12 @@ int external_commands(char ** arguments){
         if(pid == 0){
             int ret = execvp(arguments[0],arguments);
             if(ret == -1){
-                printf("Error in execvp \n");
+                perror("Error in execvp\n");
                 return 0;
             }
         }
         else if(pid < 0){
-            printf("Error: Fork failed\n");
+            perror("Fork failed\n");
             return 0;
         }
         else{
@@ -262,12 +265,12 @@ int external_commands(char ** arguments){
         if(pid == 0){
             int ret = execvp(arguments[0],arguments);
             if(ret == -1){
-                printf("Error in execvp\n");
+                perror("Error in execvp\n");
                 return 0;
             }
         }
         else if(pid < 0){
-            printf("Error: Fork failed\n");
+            perror("Fork failed\n");
             return 0;
         }
         else{
@@ -281,12 +284,12 @@ int external_commands(char ** arguments){
         if(pid == 0){
             int ret =  execvp(arguments[0],arguments);
             if(ret == -1){
-                printf("Error in execvp\n");
+                perror("Error in execvp\n");
                 return 0;
             }
         }
         else if(pid < 0){
-            printf("Error: Fork failed\n");
+            perror("Fork failed\n");
             return 0;
         }
         else{
@@ -299,12 +302,12 @@ int external_commands(char ** arguments){
         if(pid == 0){
             int ret = execvp(arguments[0],arguments);
             if(ret == -1){
-                printf("Error in execvp\n");
+                perror("Error in execvp\n");
                 return 0;
             }
         }
         else if(pid < 0){
-            printf("Error: Fork failed\n");
+            perror("Fork failed\n");
             return 0;
         }
         else{
