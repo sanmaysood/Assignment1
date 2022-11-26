@@ -26,8 +26,8 @@ int main(int argc, char ** args){
             }
         }
         else if(strcmp(args[1], "-p") == 0){
-            int r = mkdir(args[2], 0777);
-            if(r == -1){
+            int m = mkdir(args[2], 0777);
+            if(m == -1){
                 printf("Directory already exists\n");
             }
         }
