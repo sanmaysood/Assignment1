@@ -9,27 +9,37 @@ int main(int argc, char ** args){
     
     FILE *fp;
     if(argc == 1){
-        perror("No arguments passed\n");
+        printf("No arguments passed\n");
     }
+
     else if(argc == 2){
+
         fp = fopen(args[1], "r");
+
         if(fp == NULL){
-            perror("File not found\n");
+            printf("File not found\n");
         }
+
         else{
+
             char data[1024];
             while(fgets(data, 1024, fp) != NULL){
                 printf("%s", data);
             }
         }
+
         fclose(fp);
     }
+
     else if(argc == 3){
+
         if(strcmp(args[1], "-n") == 0){
+
             fp = fopen(args[2], "r");
             if(fp == NULL){
-                perror("File not found\n");
+                printf("File not found\n");
             }
+
             else{
                 char data[1024];
                 int i = 1;
@@ -38,34 +48,46 @@ int main(int argc, char ** args){
                     i++;
                 }
             }
+
             fclose(fp);
         }
+
         else if(strcmp(args[1], "-E") == 0){
             fp = fopen(args[2], "r");
+
             if(fp == NULL){
-                perror("File not found\n");
+                printf("File not found\n");
             }
+
             else{
                 char data[1024];
+
                 while(fgets(data, 1024, fp) != NULL){
-                    char newst[1000];int ind=0;
-                    for(int i=0; i < strlen(data)-1 ;i++)
-                    {
-                    newst[ind++]= data[i];
+                    char newstr[1000];
+                    int ind = 0;
+
+                    for(int i=0; i < strlen(data)-1 ;i++){
+                    
+                        newstr[ind++] = data[i];
+
                     }
-                    printf("%s$\n", newst);
+                    printf("%s$\n", newstr);
                 }
             }
+
             fclose(fp);
         }
+
         else{
-            perror("Invalid command\n");
+            printf("Invalid command\n");
         }
     }
 
     else{
-        perror("Too many arguments passed\n");
+        printf("Too many arguments passed\n");
     }
 
     return 0;
 }
+
+
