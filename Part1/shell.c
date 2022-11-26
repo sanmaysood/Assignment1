@@ -19,7 +19,7 @@ int internal_commands(char ** arguments);
 
 int external_commands(char ** arguments);
 
-void * thread_function(char ** args);
+void * thread_function(void * args);
 
 
 
@@ -72,7 +72,7 @@ int interpret(char ** arguments){
 
     if(strcmp(arguments[size],"&t") == 0){
         pthread_t tid;
-        pthread_create(&tid, NULL, &thread_function, arguments);
+        pthread_create(&tid, NULL, thread_function, arguments);
         pthread_join(tid, NULL);
     }
 
@@ -319,11 +319,11 @@ int external_commands(char ** arguments){
 }
 
 
-void * thread_function(char ** args){
-
+void * thread_function(void * args){
+    char ** arguments = (char **)args;
     char command[100000];
-    for(int i = 0; args[i] != NULL; i++){
-        strcat(command,args[i]);
+    for(int i = 0; arguments[i] != NULL; i++){
+        strcat(command,arguments[i]);
         strcat(command," ");
     }
 
