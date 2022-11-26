@@ -8,12 +8,12 @@
 int main(int argc, char ** args){
 
     if(argc == 1){
-        printf("No arguments passed\n");
+        perror("No arguments passed\n");
     }
     else if(argc == 2){
         int r = remove(args[1]);
         if(r == -1){
-            printf("File not found\n");
+            perror("File not found\n");
         }
     }
     else if(argc == 3){
@@ -24,25 +24,25 @@ int main(int argc, char ** args){
             if(c == 'y'){
                 int r = remove(args[2]);
                 if(r == -1){
-                    printf("File not found\n");
+                    perror("File not found\n");
                 }
             }
         }
         else if(strcmp(args[1], "-v") == 0){
             int r = remove(args[2]);
             if(r == -1){
-                printf("File not found\n");
+                perror("File not found\n");
             }
             else{
                 printf("Removed this file - %s\n", args[2]);
             }
         }
         else{
-            printf("Invalid command\n");
+            perror("Invalid command\n");
         }
     }
     else{
-        printf("Invalid command\n");
+        perror("Too many arguments\n");
     }
 
     return 0;
