@@ -65,13 +65,14 @@ int interpret(char ** arguments){
     
 //     int size = sizeof(arguments)/sizeof(arguments[0]);
        int size = 0;
+       
         for(int i=0;arguments[i] != NULL; i++){
             size++;
         }
 
-    if(strcmp(arguments[size],"&t") == 0){
+    if(strcmp(arguments[size - 1],"&t") == 0){
         pthread_t tid;
-        pthread_create(&tid, NULL, thread_function, arguments);
+        pthread_create(&tid, NULL, &thread_function, arguments);
         pthread_join(tid, NULL);
         return 1;
     }
@@ -83,12 +84,15 @@ int interpret(char ** arguments){
         }
 
         else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
-            return internal_commands(arguments);
+
+            int ret = internal_commands(arguments);
+            return ret;
         }
     
         else {
 
-            return external_commands(arguments);
+            int ret = external_commands(arguments);
+            return ret;
         }
     }
     return 1;
@@ -362,8 +366,10 @@ int external_commands(char ** arguments){
 
 
 void * thread_function(void * args){
+
     char ** arguments = (char **) args;
     char command[1000];
+
     for(int i = 0; arguments[i] != NULL; i++){
         strcat(command,arguments[i]);
         strcat(command," ");
