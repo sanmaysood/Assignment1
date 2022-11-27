@@ -29,7 +29,7 @@ int main() {
     
     while(s){
 
-    printf(">> "); 
+    printf("[Sanmay's shell]>>>"); 
     
     fgets(line, 100 , stdin);
        
