@@ -22,19 +22,19 @@ void * thread_function(void * args);
 int main() {
 
     char * line;
-    line = (char *)malloc(50*sizeof(char));
+    line = (char *) malloc(100*sizeof(char));
     char ** arguments;
-    arguments = (char **)malloc(200*sizeof(char *));
+    arguments = (char **) malloc(200*sizeof(char *));
     int s = 1;
     
     while(s){
 
     printf(">> "); 
     
-    fgets(line, 50 , stdin);
+    fgets(line, 100 , stdin);
        
     char * word;
-    word = (char*)malloc(50*sizeof(char));
+    word = (char*) malloc(50*sizeof(char));
     int i = 0;
     word = strtok(line, "  \t\r\n\a");
 
@@ -258,23 +258,23 @@ int external_commands(char ** arguments){
     else if(pid == 0){
 
         if(strcmp(arguments[0],"ls") == 0){
-            temp = "ls";
+            strcpy(temp,"ls");
         }
 
         else if(strcmp(arguments[0],"cat") == 0){
-            temp = "cat";
+            strcpy(temp,"cat");
         }
         
         else if(strcmp(arguments[0],"date") == 0){
-            temp = "date";
+            strcpy(temp,"date");
         }
         
         else if(strcmp(arguments[0],"rm") == 0){
-            temp = "rm";
+            strcpy(temp,"rm");
         }
         
         else if(strcmp(arguments[0],"mkdir") == 0){
-            temp = "mkdir";
+            strcpy(temp,"mkdir");
         }
 
         int ret = execvp(temp,arguments);
@@ -296,7 +296,7 @@ int external_commands(char ** arguments){
 
 void * thread_function(void * args){
     char ** arguments = (char **) args;
-    char command[100000];
+    char command[1000];
     for(int i = 0; arguments[i] != NULL; i++){
         strcat(command,arguments[i]);
         strcat(command," ");
@@ -305,3 +305,4 @@ void * thread_function(void * args){
     system(command);    
     pthread_exit(NULL);
 }
+
