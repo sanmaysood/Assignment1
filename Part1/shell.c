@@ -141,7 +141,7 @@ int internal_commands(char ** arguments){
             
 //             printf("Too many arguments\n");
 //         }
-    }
+//     }
 
 
 
