@@ -13,9 +13,9 @@ int main(int argc, char ** args){
     }
 
     else if(argc == 2){
-        int m = mkdir(args[1], 0777);
+        int m1 = mkdir(args[1], 0777);
 
-        if(m == -1){
+        if(m1 == -1){
             printf("Directory already exists\n");
         }
     }
@@ -23,9 +23,9 @@ int main(int argc, char ** args){
     else if(argc == 3){
 
         if(strcmp(args[1], "-v") == 0){
-            int m = mkdir(args[2], 0777);
+            int m2 = mkdir(args[2], 0777);
 
-            if(m == -1){
+            if(m2 == -1){
                 printf("Directory already exists\n");
             }
 
@@ -35,14 +35,15 @@ int main(int argc, char ** args){
         }
 
         else if(strcmp(args[1], "-p") == 0){
-            
-            char * path = args[2];
-            char * current = strtok(path,"/");
+            char * path = (char *) malloc(128 * sizeof(char));
+            path = args[2];
+            char * current  = (char *) malloc(128 * sizeof(char));
+            current = strtok(path,"/");
 
             while(current != NULL){
 
-                int m = mkdir(current,0777);
-                if(m == -1){
+                int m3 = mkdir(current,0777);
+                if(m3 == -1){
                     printf("Directory already exists\n");
                 }
                 
