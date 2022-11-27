@@ -366,7 +366,7 @@ void * thread_function(void * args){
         strcat(command,arguments[i]);
         strcat(command," ");
     }
-
+     printf("Command: %s\n",command);
     system(command);    
     pthread_exit(NULL);
 }
