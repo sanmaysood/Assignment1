@@ -246,51 +246,100 @@ int internal_commands(char ** arguments){
 
 int external_commands(char ** arguments){
     
-    char *temp = malloc(128 * sizeof(char *));
-    pid_t pid;
-    pid = fork();
+    if(strcmp(arguments[0],"ls") == 0){
+        pid_t pid;
+        pid = fork();
 
-    if(pid < 0){
-        printf("Fork failed\n");
-        return 0;
-    }
-
-    else if(pid == 0){
-
-        if(strcmp(arguments[0],"ls") == 0){
-            strcpy(temp,"ls");
-        }
-
-        else if(strcmp(arguments[0],"cat") == 0){
-            strcpy(temp,"cat");
-        }
-        
-        else if(strcmp(arguments[0],"date") == 0){
-            strcpy(temp,"date");
-        }
-        
-        else if(strcmp(arguments[0],"rm") == 0){
-            strcpy(temp,"rm");
-        }
-        
-        else if(strcmp(arguments[0],"mkdir") == 0){
-            strcpy(temp,"mkdir");
-        }
-
-        int ret = execvp(temp,arguments);
-
+        if(pid == 0){
+            int ret = execvp(arguments[0],arguments);
             if(ret == -1){
                 printf("Error in execvp\n");
                 return 0;
             }
+        }
+        else if(pid < 0){
+            printf("Fork failed\n");
+            return 0;
+        }
+        else{
+            waitpid(-1, NULL, 0);
+        }
+    }
+    else if(strcmp(arguments[0],"cat") == 0){
+        pid_t pid;
+        pid = fork();
+        if(pid == 0){
+            int ret = execvp(arguments[0],arguments);
+            if(ret == -1){
+                printf("Error in execvp\n");
+                return 0;
+            }
+        }
+        else if(pid < 0){
+            printf("Fork failed\n");
+            return 0;
+        }
+        else{
+            waitpid(-1, NULL, 0);
+        }
     }
 
-    else{
-
-         waitpid(-1, NULL, 0);
+    else if(strcmp(arguments[0],"date") == 0){
+        pid_t pid;
+        pid = fork();
+        if(pid == 0){
+            int ret = execvp(arguments[0],arguments);
+            if(ret == -1){
+                printf("Error in execvp\n");
+                return 0;
+            }
+        }
+        else if(pid < 0){
+            printf("Fork failed\n");
+            return 0;
+        }
+        else{
+            waitpid(-1, NULL, 0);
+        }
     }
-     
-    free(temp);
+
+    else if(strcmp(arguments[0],"rm") == 0){
+        pid_t pid;
+        pid = fork();
+        if(pid == 0){
+            int ret =  execvp(arguments[0],arguments);
+            if(ret == -1){
+                printf("Error in execvp\n");
+                return 0;
+            }
+        }
+        else if(pid < 0){
+            printf("Fork failed\n");
+            return 0;
+        }
+        else{
+            waitpid(-1, NULL, 0);
+        }
+    }
+    else if(strcmp(arguments[0],"mkdir") == 0){
+        pid_t pid;
+        pid = fork();
+        if(pid == 0){
+            int ret = execvp(arguments[0],arguments);
+            if(ret == -1){
+                printf("Error in execvp\n");
+                return 0;
+            }
+        }
+        else if(pid < 0){
+            printf("Fork failed\n");
+            return 0;
+        }
+        else{
+            waitpid(-1, NULL, 0);
+        }
+    }
+    
     return 1;
 }
 
