@@ -60,7 +60,11 @@ int main() {
 
 int interpret(char ** arguments){
 
-    int size = sizeof(arguments)/sizeof(arguments[0]);
+//     int size = sizeof(arguments)/sizeof(arguments[0]);
+       int size = 0;
+        for(int i=0;arguments[i] != NULL; i++){
+            size++;
+        }
 
     if(strcmp(arguments[size],"&t") == 0){
         pthread_t tid;
@@ -90,7 +94,11 @@ int interpret(char ** arguments){
 
 int internal_commands(char ** arguments){
 
-    int number = sizeof(arguments)/sizeof(arguments[0]);
+//     int number = sizeof(arguments)/sizeof(arguments[0]);
+    int number = 0;
+        for(int i=0;arguments[i] != NULL; i++){
+            number++;
+        }
 
     if(strcmp(arguments[0],"cd") == 0){
 
