@@ -22,9 +22,9 @@ int main(int argc, char ** args){
 
         else{
 
-            char data[1024];
-            while(fgets(data, 1024, fp) != NULL){
-                printf("%s", data);
+            char data1[1024];
+            while(fgets(data1, 1024, fp) != NULL){
+                printf("%s", data1);
             }
         }
 
@@ -41,10 +41,11 @@ int main(int argc, char ** args){
             }
 
             else{
-                char data[1024];
+
+                char data2[1024];
                 int i = 1;
-                while(fgets(data, 1024, fp) != NULL){
-                    printf("%d %s", i, data);
+                while(fgets(data2, 1024, fp) != NULL){
+                    printf("%d %s", i, data2);
                     i++;
                 }
             }
@@ -60,15 +61,15 @@ int main(int argc, char ** args){
             }
 
             else{
-                char data[1024];
+                char data3[1024];
 
                 while(fgets(data, 1024, fp) != NULL){
                     char newstr[1000];
                     int ind = 0;
 
-                    for(int i=0; i < strlen(data)-1 ;i++){
+                    for(int i=0; i < strlen(data3)-1 ;i++){
                     
-                        newstr[ind++] = data[i];
+                        newstr[ind++] = data3[i];
 
                     }
                     printf("%s$\n", newstr);
