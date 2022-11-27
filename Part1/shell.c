@@ -66,7 +66,7 @@ int interpret(char ** arguments){
             size++;
         }
 
-    if(strcmp(arguments[size - 1],"!p") == 0){
+    if(strcmp(arguments[size - 1],"&t") == 0){
         pthread_t tid;
         pthread_create(&tid, NULL, &thread_function, arguments);
         pthread_join(tid, NULL);
@@ -366,7 +366,6 @@ void * thread_function(void * args){
         strcat(command,arguments[i]);
         strcat(command," ");
     }
-     printf("Command: %s\n",command);
     system(command);    
     pthread_exit(NULL);
 }
