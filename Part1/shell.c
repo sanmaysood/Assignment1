@@ -148,14 +148,15 @@ int internal_commands(char ** arguments){
             printf("No arguments passed\n");
         }
         else if(number == 2){
-            printf("%s",arguments[1]);
+            printf("%s\n",arguments[1]);
         }
 
         else if(number > 2){
             if(strcmp(arguments[1],"-n") == 0){
                 for(int i = 2; i < number; i++){
-                    printf("%s",arguments[i]);
+                    printf("%s ",arguments[i]);
                 }
+                printf("\n");
             }
             else if(strcmp(arguments[1],"-e") == 0){
                 for(int i = 2; i < number; i++){
@@ -190,7 +191,7 @@ int internal_commands(char ** arguments){
                         printf("\\");
                     }
                     else{
-                        printf("%s",arguments[i]);
+                        printf("%s\n",arguments[i]);
                     }
                 }
             }
@@ -198,8 +199,9 @@ int internal_commands(char ** arguments){
             else{
 
                 for(int i = 1; i < number; i++){
-                    printf("%s",arguments[i]);
+                    printf("%s ",arguments[i]);
                 }
+                printf("\n");
             }
         }
     }
