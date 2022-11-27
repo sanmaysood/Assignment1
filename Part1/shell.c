@@ -143,10 +143,7 @@ int internal_commands(char ** arguments){
 
 
     else if(strcmp(arguments[0],"echo") == 0){
-            
-            for(int i=0; arguments[i] != NULL;i++){
-                printf("%s\n",arguments[i]);
-            }
+        
         if(arguments[1] == NULL){
             printf("No arguments passed\n");
         }
