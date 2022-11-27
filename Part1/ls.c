@@ -21,7 +21,7 @@ int main(int argc, char ** args){
             printf("%s \n", dir->d_name);
             }
         }
-        closedir(D);
+//         closedir(D);
    }
 
    else if(argc == 2){
@@ -32,7 +32,7 @@ int main(int argc, char ** args){
                 printf("%s \n", dir->d_name);
             }
 
-            closedir(D);
+//             closedir(D);
         }
 
         else if(strcmp(args[1],"-m") == 0){
@@ -43,7 +43,7 @@ int main(int argc, char ** args){
                 }
             }
             
-            closedir(D);
+//             closedir(D);
         }
 
         else{
