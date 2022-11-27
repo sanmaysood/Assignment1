@@ -67,10 +67,9 @@ int interpret(char ** arguments){
         }
 
     if(strcmp(arguments[size - 1],"&t") == 0){
-        printf("Thread\n");
-//         pthread_t tid;
-//         pthread_create(&tid, NULL, &thread_function, arguments);
-//         pthread_join(tid, NULL);
+        pthread_t tid;
+        pthread_create(&tid, NULL, &thread_function, arguments);
+        pthread_join(tid, NULL);
         return 1;
     }
 
