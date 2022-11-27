@@ -63,34 +63,34 @@ int interpret(char ** arguments){
 //                 printf("%s\n",arguments[i]);
 //             }
     
-//     int size = sizeof(arguments)/sizeof(arguments[0]);
-//        int size = 0;
-//         for(int i=0;arguments[i] != NULL; i++){
-//             size++;
-//         }
+    int size = sizeof(arguments)/sizeof(arguments[0]);
+       int size = 0;
+        for(int i=0;arguments[i] != NULL; i++){
+            size++;
+        }
 
-//     if(strcmp(arguments[size],"&t") == 0){
-//         pthread_t tid;
-//         pthread_create(&tid, NULL, thread_function, arguments);
-//         pthread_join(tid, NULL);
-//         return 1;
-//     }
+    if(strcmp(arguments[size],"&t") == 0){
+        pthread_t tid;
+        pthread_create(&tid, NULL, thread_function, arguments);
+        pthread_join(tid, NULL);
+        return 1;
+    }
 
-//     else {
+    else {
 
-//         if(arguments[0] == NULL){
-//             return 1;
-//         }
+        if(arguments[0] == NULL){
+            return 1;
+        }
 
         else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
             return internal_commands(arguments);
         }
     
-//         else {
+        else {
 
-//             return external_commands(arguments);
-//         }
-//     }
+            return external_commands(arguments);
+        }
+    }
     return 1;
 }
 
@@ -145,11 +145,11 @@ int internal_commands(char ** arguments){
 
 
 
-    else if(strcmp(arguments[0],"echo") == 0){
+//     else if(strcmp(arguments[0],"echo") == 0){
             
-            for(int i=0; arguments[i] != NULL;i++){
-                printf("%s\n",arguments[i]);
-            }
+//             for(int i=0; arguments[i] != NULL;i++){
+//                 printf("%s\n",arguments[i]);
+//             }
 //         if(arguments[1] == NULL){
 //             printf("No arguments passed\n");
 //         }
@@ -212,50 +212,50 @@ int internal_commands(char ** arguments){
 
 
 
-    else if(strcmp(arguments[0],"pwd") == 0){
+//     else if(strcmp(arguments[0],"pwd") == 0){
 
-        if(number == 1){
-            char cwd[1024];
-            getcwd(cwd, sizeof(cwd));
-            printf("%s\n",cwd);
-        }
+//         if(number == 1){
+//             char cwd[1024];
+//             getcwd(cwd, sizeof(cwd));
+//             printf("%s\n",cwd);
+//         }
 
-        else if(number == 2){
+//         else if(number == 2){
 
-            if(strcmp(arguments[1],"-L") == 0){
-                char * str = malloc(128 * sizeof(char *));
-                str = getenv("PWD");
-                printf("%s\n",str);
-            }
+//             if(strcmp(arguments[1],"-L") == 0){
+//                 char * str = malloc(128 * sizeof(char *));
+//                 str = getenv("PWD");
+//                 printf("%s\n",str);
+//             }
 
-            else if(strcmp(arguments[1],"-P") == 0){
-                char cwd[1024];
-                getcwd(cwd, sizeof(cwd));
-                printf("%s\n",cwd);
-            }
+//             else if(strcmp(arguments[1],"-P") == 0){
+//                 char cwd[1024];
+//                 getcwd(cwd, sizeof(cwd));
+//                 printf("%s\n",cwd);
+//             }
 
-            else{
-                printf("Invalid flag used/ Invalid command.\n");
-            }
-        }
+//             else{
+//                 printf("Invalid flag used/ Invalid command.\n");
+//             }
+//         }
 
-        else{
-                printf("Too many arguments\n");
+//         else{
+//                 printf("Too many arguments\n");
 
-        }
-    }
+//         }
+//     }
 
 
-    else if(strcmp(arguments[0],"exit") == 0){
-        if(number == 1){
-            return 0;
-        }
+//     else if(strcmp(arguments[0],"exit") == 0){
+//         if(number == 1){
+//             return 0;
+//         }
 
-        else{
-            printf("Too many arguments\n");
-        }
+//         else{
+//             printf("Too many arguments\n");
+//         }
                 
-    }
+//     }
 
     return 1;
 }
