@@ -13,8 +13,8 @@ int main(int argc, char ** args){
 
     else if(argc == 2){
 
-        int r = remove(args[1]);
-        if(r == -1){
+        int r1 = remove(args[1]);
+        if(r1 == -1){
             printf("File not found\n");
         }
     }
@@ -28,9 +28,9 @@ int main(int argc, char ** args){
             scanf("%c", &c);
 
             if(c == 'y'){
-                int r = remove(args[2]);
+                int r2 = remove(args[2]);
     
-                if(r == -1){
+                if(r2 == -1){
                     printf("File not found\n");
                 }
             }
@@ -38,8 +38,8 @@ int main(int argc, char ** args){
 
         else if(strcmp(args[1], "-v") == 0){
 
-            int r = remove(args[2]);
-            if(r == -1){
+            int r3 = remove(args[2]);
+            if(r3 == -1){
                 printf("File not found\n");
             }
             else{
