@@ -59,9 +59,9 @@ int main() {
 
 
 int interpret(char ** arguments){
-     for(int i=0; arguments[i] != NULL;i++){
-                printf("%s\n",arguments[i]);
-            }
+//      for(int i=0; arguments[i] != NULL;i++){
+//                 printf("%s\n",arguments[i]);
+//             }
     
 //     int size = sizeof(arguments)/sizeof(arguments[0]);
 //        int size = 0;
@@ -82,9 +82,9 @@ int interpret(char ** arguments){
 //             return 1;
 //         }
 
-//         else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
-//             return internal_commands(arguments);
-//         }
+        else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
+            return internal_commands(arguments);
+        }
     
 //         else {
 
@@ -97,56 +97,59 @@ int interpret(char ** arguments){
 
 int internal_commands(char ** arguments){
 
-//     int number = sizeof(arguments)/sizeof(arguments[0]);
-    int number = 0;
-        for(int i=0;arguments[i] != NULL; i++){
-            number++;
-        }
-
-    if(strcmp(arguments[0],"cd") == 0){
-
-        if(arguments[1] == NULL){
-
-            printf("No arguments passed\n");
-        }
-
-        else if(number == 2 && strcmp(arguments[1],"~") == 0){
-            chdir(getenv("HOME"));
-        }
-
-        else if(number == 2 && strcmp(arguments[1],"..") == 0){
-            char * path = malloc(128 * sizeof(char));
-            getcwd(path, 128);
-            int i = strlen(path);
-            while(path[i] != '/'){
-                path[i] = '\0';
-                i--;
+         for(int i=0; arguments[i] != NULL;i++){
+                printf("%s\n",arguments[i]);
             }
-            path[i] = '\0';
-            chdir(path);
-        }
+//     int number = sizeof(arguments)/sizeof(arguments[0]);
+//     int number = 0;
+//         for(int i=0;arguments[i] != NULL; i++){
+//             number++;
+//         }
 
-        else if(number == 2 && strcmp(arguments[1],"..") != 0 && strcmp(arguments[1],"~") != 0){
-            char * path = malloc(128 * sizeof(char *));
-            getcwd(path, 128);
-            strcat(path, "/");
-            strcat(path, arguments[1]);
-            chdir(path);
-        }
+//     if(strcmp(arguments[0],"cd") == 0){
 
-        else{
+//         if(arguments[1] == NULL){
+
+//             printf("No arguments passed\n");
+//         }
+
+//         else if(number == 2 && strcmp(arguments[1],"~") == 0){
+//             chdir(getenv("HOME"));
+//         }
+
+//         else if(number == 2 && strcmp(arguments[1],"..") == 0){
+//             char * path = malloc(128 * sizeof(char));
+//             getcwd(path, 128);
+//             int i = strlen(path);
+//             while(path[i] != '/'){
+//                 path[i] = '\0';
+//                 i--;
+//             }
+//             path[i] = '\0';
+//             chdir(path);
+//         }
+
+//         else if(number == 2 && strcmp(arguments[1],"..") != 0 && strcmp(arguments[1],"~") != 0){
+//             char * path = malloc(128 * sizeof(char *));
+//             getcwd(path, 128);
+//             strcat(path, "/");
+//             strcat(path, arguments[1]);
+//             chdir(path);
+//         }
+
+//         else{
             
-            printf("Too many arguments\n");
-        }
+//             printf("Too many arguments\n");
+//         }
     }
 
 
 
     else if(strcmp(arguments[0],"echo") == 0){
             
-//             for(int i=0; arguments[i] != NULL;i++){
-//                 printf("%s\n",arguments[i]);
-//             }
+            for(int i=0; arguments[i] != NULL;i++){
+                printf("%s\n",arguments[i]);
+            }
 //         if(arguments[1] == NULL){
 //             printf("No arguments passed\n");
 //         }
