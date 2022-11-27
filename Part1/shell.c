@@ -48,8 +48,8 @@ int main() {
    
     s = interpret(arguments);
 
-    free(line);
-    free(arguments);
+//     free(line);
+//     free(arguments);
 
     } 
 
