@@ -59,35 +59,38 @@ int main() {
 
 
 int interpret(char ** arguments){
-
-//     int size = sizeof(arguments)/sizeof(arguments[0]);
-       int size = 0;
-        for(int i=0;arguments[i] != NULL; i++){
-            size++;
-        }
-
-    if(strcmp(arguments[size],"&t") == 0){
-        pthread_t tid;
-        pthread_create(&tid, NULL, thread_function, arguments);
-        pthread_join(tid, NULL);
-        return 1;
-    }
-
-    else {
-
-        if(arguments[0] == NULL){
-            return 1;
-        }
-
-        else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
-            return internal_commands(arguments);
-        }
+     for(int i=0; arguments[i] != NULL;i++){
+                printf("%s\n",arguments[i]);
+            }
     
-        else {
+//     int size = sizeof(arguments)/sizeof(arguments[0]);
+//        int size = 0;
+//         for(int i=0;arguments[i] != NULL; i++){
+//             size++;
+//         }
 
-            return external_commands(arguments);
-        }
-    }
+//     if(strcmp(arguments[size],"&t") == 0){
+//         pthread_t tid;
+//         pthread_create(&tid, NULL, thread_function, arguments);
+//         pthread_join(tid, NULL);
+//         return 1;
+//     }
+
+//     else {
+
+//         if(arguments[0] == NULL){
+//             return 1;
+//         }
+
+//         else if(strcmp(arguments[0],"cd") == 0 || strcmp(arguments[0],"echo") == 0 || strcmp(arguments[0],"pwd") == 0 || strcmp(arguments[0],"exit") == 0){
+//             return internal_commands(arguments);
+//         }
+    
+//         else {
+
+//             return external_commands(arguments);
+//         }
+//     }
     return 1;
 }
 
@@ -141,9 +144,9 @@ int internal_commands(char ** arguments){
 
     else if(strcmp(arguments[0],"echo") == 0){
             
-            for(int i=0; arguments[i] != NULL;i++){
-                printf("%s\n",arguments[i]);
-            }
+//             for(int i=0; arguments[i] != NULL;i++){
+//                 printf("%s\n",arguments[i]);
+//             }
 //         if(arguments[1] == NULL){
 //             printf("No arguments passed\n");
 //         }
