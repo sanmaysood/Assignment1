@@ -22,19 +22,19 @@ void * thread_function(void * args);
 int main() {
 
     char * line;
-    line=(char *)malloc(25*sizeof(char));
+    line = (char *)malloc(50*sizeof(char));
     char ** arguments;
-    arguments=(char **)malloc(25*sizeof(char *));
+    arguments = (char **)malloc(200*sizeof(char *));
     int s = 1;
     
     while(s){
 
     printf(">> "); 
     
-    fgets(line, 100000, stdin);
+    fgets(line, 50 , stdin);
        
     char * word;
-    word = (char*)malloc(25*sizeof(char));
+    word = (char*)malloc(50*sizeof(char));
     int i = 0;
     word = strtok(line, "  \t\r\n\a");
 
@@ -246,7 +246,7 @@ int internal_commands(char ** arguments){
 
 int external_commands(char ** arguments){
     
-    char *temp = NULL;
+    char *temp = malloc(128 * sizeof(char *));
     pid_t pid;
     pid = fork();
 
