@@ -63,7 +63,7 @@ int interpret(char ** arguments){
 //                 printf("%s\n",arguments[i]);
 //             }
     
-    int size = sizeof(arguments)/sizeof(arguments[0]);
+//     int size = sizeof(arguments)/sizeof(arguments[0]);
        int size = 0;
         for(int i=0;arguments[i] != NULL; i++){
             size++;
@@ -208,7 +208,7 @@ int internal_commands(char ** arguments){
 //                 }
 //             }
 //         }
-    }
+//     }
 
 
 
