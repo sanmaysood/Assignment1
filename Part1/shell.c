@@ -21,8 +21,10 @@ void * thread_function(void * args);
 
 int main() {
 
-    char * line = NULL;
+    char * line;
+    line=(char *)malloc(25*sizeof(char));
     char ** arguments;
+    arguments=(char **)malloc(25*sizeof(char *));
     int s = 1;
     
     while(s){
@@ -32,6 +34,7 @@ int main() {
     fgets(line, 100000, stdin);
        
     char * word;
+    word = (char*)malloc(25*sizeof(char));
     int i = 0;
     word = strtok(line, "  \t\r\n\a");
 
@@ -49,6 +52,7 @@ int main() {
     free(arguments);
 
     } 
+
     return 0;
 }
  
