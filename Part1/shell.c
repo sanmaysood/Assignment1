@@ -140,65 +140,68 @@ int internal_commands(char ** arguments){
 
 
     else if(strcmp(arguments[0],"echo") == 0){
-
-        if(arguments[1] == NULL){
-            printf("No arguments passed\n");
-        }
-        else if(number == 2){
-            printf("%s",arguments[1]);
-        }
-
-        else if(number > 2){
-            if(strcmp(arguments[1],"-n") == 0){
-                for(int i = 2; i < number; i++){
-                    printf("%s",arguments[i]);
-                }
+            
+            for(int i=0; arguments[i] != NULL;i++){
+                printf("%s\n",arguments[i]);
             }
-            else if(strcmp(arguments[1],"-e") == 0){
-                for(int i = 2; i < number; i++){
-                    if(strcmp(arguments[i],"\\n") == 0){
-                        printf("\n");
-                    }
-                    else if(strcmp(arguments[i],"\\t") == 0){
-                        printf("\t");
-                    }
-                    else if(strcmp(arguments[i],"\\a") == 0){
-                        printf("\a");
-                    }
-                    else if(strcmp(arguments[i],"\\b") == 0){
-                        printf("\b");
-                    }
-                    else if(strcmp(arguments[i],"\\v") == 0){
-                        printf("\v");
-                    }
-                    else if(strcmp(arguments[i],"\\r") == 0){
-                        printf("\r");
-                    }
-                    else if(strcmp(arguments[i],"\\f") == 0){
-                        printf("\f");
-                    }
-                    else if(strcmp(arguments[i],"\\'") == 0){
-                        printf("\'");
-                    }
-                    else if(strcmp(arguments[i],"\\\"") == 0){
-                        printf("\"");
-                    }
-                    else if(strcmp(arguments[i],"\\\\") == 0){
-                        printf("\\");
-                    }
-                    else{
-                        printf("%s",arguments[i]);
-                    }
-                }
-            }
+//         if(arguments[1] == NULL){
+//             printf("No arguments passed\n");
+//         }
+//         else if(number == 2){
+//             printf("%s",arguments[1]);
+//         }
 
-            else{
+//         else if(number > 2){
+//             if(strcmp(arguments[1],"-n") == 0){
+//                 for(int i = 2; i < number; i++){
+//                     printf("%s",arguments[i]);
+//                 }
+//             }
+//             else if(strcmp(arguments[1],"-e") == 0){
+//                 for(int i = 2; i < number; i++){
+//                     if(strcmp(arguments[i],"\\n") == 0){
+//                         printf("\n");
+//                     }
+//                     else if(strcmp(arguments[i],"\\t") == 0){
+//                         printf("\t");
+//                     }
+//                     else if(strcmp(arguments[i],"\\a") == 0){
+//                         printf("\a");
+//                     }
+//                     else if(strcmp(arguments[i],"\\b") == 0){
+//                         printf("\b");
+//                     }
+//                     else if(strcmp(arguments[i],"\\v") == 0){
+//                         printf("\v");
+//                     }
+//                     else if(strcmp(arguments[i],"\\r") == 0){
+//                         printf("\r");
+//                     }
+//                     else if(strcmp(arguments[i],"\\f") == 0){
+//                         printf("\f");
+//                     }
+//                     else if(strcmp(arguments[i],"\\'") == 0){
+//                         printf("\'");
+//                     }
+//                     else if(strcmp(arguments[i],"\\\"") == 0){
+//                         printf("\"");
+//                     }
+//                     else if(strcmp(arguments[i],"\\\\") == 0){
+//                         printf("\\");
+//                     }
+//                     else{
+//                         printf("%s",arguments[i]);
+//                     }
+//                 }
+//             }
 
-                for(int i = 1; i < number; i++){
-                    printf("%s",arguments[i]);
-                }
-            }
-        }
+//             else{
+
+//                 for(int i = 1; i < number; i++){
+//                     printf("%s",arguments[i]);
+//                 }
+//             }
+//         }
     }
 
 
