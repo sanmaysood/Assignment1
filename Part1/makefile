@@ -4,7 +4,7 @@ run:
 	gcc date.c -o date
 	gcc mkdir.c -o mkdir
 	gcc rm.c -o rm
-	gcc shell.c -o shell -lpthread
+	gcc -pthread -o shell shell.c
 	./shell
 	clear
 clear:
