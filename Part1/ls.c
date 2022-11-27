@@ -7,7 +7,7 @@
 
 int main(int argc, char ** args){
     struct dirent *dir;
-    DIR *D = (DIR *) malloc(sizeof(DIR));
+    DIR *D;
     D = opendir(".");
 
     if(D == NULL){
