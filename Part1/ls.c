@@ -14,7 +14,7 @@ int main(int argc, char ** args){
         printf("Directory does not exist\n");
     }
 
-   if(argc == 1){
+   if(argc == 1 && args[0] == "ls"){
 
         while((dir = readdir(D)) != NULL){
             if(strcmp(dir->d_name,".") != 0 && strcmp(dir->d_name,"..") != 0){
@@ -24,7 +24,7 @@ int main(int argc, char ** args){
         closedir(D);
    }
 
-   else if(argc == 2){
+   else if(argc == 2 && args[0] == "ls"){
 
         if(strcmp(args[1],"-a") == 0){
     
