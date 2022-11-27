@@ -90,7 +90,7 @@ int interpret(char ** arguments){
 
 int internal_commands(char ** arguments){
 
-    int number = sizeof(arguments)/sizeof(char *);
+    int number = sizeof(arguments)/sizeof(arguments[0]);
 
     if(strcmp(arguments[0],"cd") == 0){
 
@@ -115,7 +115,7 @@ int internal_commands(char ** arguments){
             chdir(path);
         }
 
-        else if(number == 2){
+        else if(number == 2 && strcmp(arguments[1],"..") != 0 && strcmp(arguments[1],"~") != 0){
             char * path = malloc(128 * sizeof(char *));
             getcwd(path, 128);
             strcat(path, "/");
