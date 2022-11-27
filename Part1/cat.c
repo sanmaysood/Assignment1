@@ -63,7 +63,7 @@ int main(int argc, char ** args){
             else{
                 char data3[1024];
 
-                while(fgets(data, 1024, fp) != NULL){
+                while(fgets(data3, 1024, fp) != NULL){
                     char newstr[1000];
                     int ind = 0;
 
