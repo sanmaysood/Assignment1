@@ -290,6 +290,7 @@ int external_commands(char ** arguments){
          waitpid(-1, NULL, 0);
     }
      
+    free(temp);
     return 1;
 }
 
