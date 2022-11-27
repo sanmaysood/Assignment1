@@ -7,14 +7,14 @@
 
 int main(int argc, char ** args){
     struct dirent *dir;
-    DIR *D;
+    DIR *D = (DIR *) malloc(sizeof(DIR));
     D = opendir(".");
 
     if(D == NULL){
         printf("Directory does not exist\n");
     }
 
-   if(argc == 1 && args[0] == "ls"){
+   if(argc == 1){
 
         while((dir = readdir(D)) != NULL){
             if(strcmp(dir->d_name,".") != 0 && strcmp(dir->d_name,"..") != 0){
@@ -24,7 +24,7 @@ int main(int argc, char ** args){
         closedir(D);
    }
 
-   else if(argc == 2 && args[0] == "ls"){
+   else if(argc == 2){
 
         if(strcmp(args[1],"-a") == 0){
     
