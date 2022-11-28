@@ -29,7 +29,7 @@ int main() {
     
     while(s){
 
-    printf("[sanmay #] >> "); 
+    printf(">> "); 
     
     fgets(line, 100 , stdin);
        
@@ -68,7 +68,13 @@ int interpret(char ** arguments){
 
     if(strcmp(arguments[size - 1],"&t") == 0){
         pthread_t tid;
-        pthread_create(&tid, NULL, &thread_function, arguments);
+        char * str = (char *) malloc(1000*sizeof(char));
+        for(int i=0; i < size - 2; i++){
+            strcat(str, arguments[i]);
+            strcat(str, " ");
+        }
+        strcat(str, arguments[size - 2]);
+        pthread_create(&tid, NULL, &thread_function, &str);
         pthread_join(tid, NULL);
         return 1;
     }
@@ -99,6 +105,7 @@ int internal_commands(char ** arguments){
 
        
     int number = 0;
+
         for(int i=0;arguments[i] != NULL; i++){
             number++;
         }
@@ -357,16 +364,35 @@ int external_commands(char ** arguments){
 }
 
 
+// void * thread_function(void * args){
+
+//     char ** arguments = (char **) args;
+//     char command[1000];
+
+//     for(int i = 0; arguments[i] != NULL; i++){
+//         strcat(command,arguments[i]);
+//         strcat(command," ");
+//     }
+
+//     system(command);    
+//     pthread_exit(NULL);
+// }
+
 void * thread_function(void * args){
-
-    char ** arguments = (char **) args;
-    char command[1000];
-
-    for(int i = 0; arguments[i] != NULL; i++){
-        strcat(command,arguments[i]);
-        strcat(command," ");
-    }
-    system(command);    
+    char * arguments = (char *) malloc(1000 * sizeof(char *));
+    arguments = *(char **) args;
+    char * command = (char *) malloc(1000 * sizeof(char *));
+    strcat(command,"gcc ");
+    char * str1 = (char *) malloc(1000 * sizeof(char *));
+    char * str2 = (char *) malloc(1000 * sizeof(char *));
+    strcat(str1,args[0]);
+    strcat(str1,".c");
+    strcat(str2,args[0]);
+    strcat(str2,".o");
+    strcat(command,str1);
+    strcat(command," -o ");
+    strcat(command,str2);
+    system(command);
+    system(arguments);
     pthread_exit(NULL);
 }
-
