@@ -383,15 +383,15 @@ void * thread_function(void * args){
     arguments = *(char **) args;
  
     int index = 0;
-    for(int i=0 ; args[i] != NULL; i++){
-        if(args[i] == ' '){
+    for(int i=0 ; arguments[i] != NULL; i++){
+        if(arguments[i] == ' '){
             index = i;
             break;
         }
     }
     char * test = (char *) malloc(1000 * sizeof(char *));
     for(int i=0;i<index;i++){
-        test[i] = args[i];
+        test[i] = arguments[i];
     }
     if(strcmp(test,"ls") == 0){
         system("gcc ls.c -o ls");
