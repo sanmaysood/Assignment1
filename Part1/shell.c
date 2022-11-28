@@ -381,18 +381,42 @@ int external_commands(char ** arguments){
 void * thread_function(void * args){
     char * arguments = (char *) malloc(1000 * sizeof(char *));
     arguments = *(char **) args;
-    char * command = (char *) malloc(1000 * sizeof(char *));
-    strcat(command,"gcc ");
-    char * str1 = (char *) malloc(1000 * sizeof(char *));
-    char * str2 = (char *) malloc(1000 * sizeof(char *));
-    strcat(str1,args[0]);
-    strcat(str1,".c");
-    strcat(str2,args[0]);
-    strcat(str2,".o");
-    strcat(command,str1);
-    strcat(command," -o ");
-    strcat(command,str2);
-    system(command);
-    system(arguments);
+ 
+    int index = 0;
+    for(int i=0 ; args[i] != NULL; i++){
+        if(args[i] == ' '){
+            index = i;
+            break;
+        }
+    }
+    char * test = (char *) malloc(1000 * sizeof(char *));
+    for(int i=0;i<index;i++){
+        test[i] = args[i];
+    }
+    if(strcmp(test,"ls") == 0){
+        system("gcc ls.c -o ls");
+        system(arguments);
+    }
+
+    else if(strcmp(test,"cat") == 0){
+        system("gcc cat.c -o cat");
+        system(arguments);
+    }
+
+    else if(strcmp(test,"date") == 0){
+        system("gcc date.c -o date");
+        system(arguments);
+    }
+
+    else if(strcmp(test,"rm") == 0){
+        system("gcc rm.c -o rm");
+        system(arguments);
+    }
+
+    else if(strcmp(test,"mkdir") == 0){
+        system("gcc mkdir.c -o mkdir");
+        system(arguments);
+    }
+
     pthread_exit(NULL);
 }
