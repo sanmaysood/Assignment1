@@ -8,14 +8,15 @@
 int main(int argc, char ** args){
 
     if(argc == 1){
-        printf("No arguments passed\n");
+        printf("rm : missing operand\n");
+		printf("Try 'rm --help' for more information.\n");
     }
 
     else if(argc == 2){
 
         int r1 = remove(args[1]);
         if(r1 == -1){
-            printf("File not found\n");
+            printf("rm : cannot remove '%s' : No such file or directory\n", args[1]);
         }
     }
 
@@ -31,7 +32,7 @@ int main(int argc, char ** args){
                 int r2 = remove(args[2]);
     
                 if(r2 == -1){
-                    printf("File not found\n");
+                    printf("rm : cannot remove '%s' : No such file or directory\n", args[2]);
                 }
             }
         }
@@ -40,21 +41,18 @@ int main(int argc, char ** args){
 
             int r3 = remove(args[2]);
             if(r3 == -1){
-                printf("File not found\n");
-            }
+                printf("rm : cannot remove '%s' : No such file or directory\n", args[2]);
+			}
+			
             else{
                 printf("Removed this file - %s\n", args[2]);
             }
         }
 
         else{
-            printf("Invalid command\n");
+            printf("rm : invalid option -- '%s'\n", args[1]);
+			printf("Try 'rm --help' for more information.\n");
         }
     }
-
-    else{
-        printf("Too many arguments\n");
-    }
-
     return 0;
 }
