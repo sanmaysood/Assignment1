@@ -8,16 +8,13 @@
 int main(int argc, char ** args){
     
     FILE *fp;
-    if(argc == 1){
-        printf("No arguments passed\n");
-    }
 
-    else if(argc == 2){
+    if(argc == 2){
 
         fp = fopen(args[1], "r");
 
         if(fp == NULL){
-            printf("File not found\n");
+            printf("cat : %s : No such file or directory\n", args[1]);
         }
 
         else{
@@ -37,7 +34,7 @@ int main(int argc, char ** args){
 
             fp = fopen(args[2], "r");
             if(fp == NULL){
-                printf("File not found\n");
+                printf("cat : %s : No such file or directory\n", args[2]);
             }
 
             else{
@@ -57,8 +54,8 @@ int main(int argc, char ** args){
             fp = fopen(args[2], "r");
 
             if(fp == NULL){
-                printf("File not found\n");
-            }
+                printf("cat : %s : No such file or directory\n", args[2]);
+			}
 
             else{
                 char data3[1024];
@@ -80,15 +77,11 @@ int main(int argc, char ** args){
         }
 
         else{
-            printf("Invalid command\n");
-        }
-    }
+            printf("cat : invalid option -- '%s'\n", args[1]);
+			printf("Try 'cat --help' for more information.\n");
+		}
 
-    else{
-        printf("Too many arguments passed\n");
     }
-
     return 0;
 }
-
 
