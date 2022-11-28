@@ -41,13 +41,16 @@ int main(int argc, char ** args){
         }
         
         else{
-            printf("Invalid command\n");
+            printf("date: Invalid option -- '%s'\n", args[1]);
+			printf("Try 'date --help' for more information.\n");
         }
     }
 
     else{
-        printf("Too many arguments\n");
-    }
+        printf("date: extra operand %s\n",args[2]);
+		printf("Try 'date --help' for more information.\n");
+	}
+    
 
     return 0;
 }
