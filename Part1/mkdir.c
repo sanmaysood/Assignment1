@@ -9,14 +9,15 @@
 int main(int argc, char ** args){
 
     if(argc == 1){
-        printf("No arguments passed\n");
-    }
+        printf("mkdir : missing operand\n");
+		printf("Try 'mkdir --help' for more information.\n");
+	}
 
     else if(argc == 2){
         int m1 = mkdir(args[1], 0777);
 
         if(m1 == -1){
-            printf("Directory already exists\n");
+            printf("mkdir : cannot create directory '%s' : File exists\n", args[1]);
         }
     }
 
@@ -26,9 +27,9 @@ int main(int argc, char ** args){
             int m2 = mkdir(args[2], 0777);
 
             if(m2 == -1){
-                printf("Directory already exists\n");
-            }
-
+                printf("mkdir : cannot create directory '%s' : File exists\n", args[2]);
+			}
+		
             else{
                 printf("Created directory - %s\n", args[2]);
             }
@@ -44,7 +45,7 @@ int main(int argc, char ** args){
 
                 int m3 = mkdir(current,0777);
                 if(m3 == -1){
-                    printf("Directory already exists\n");
+                    printf("mkdir : cannot create directory '%s' : File exists\n", current);
                 }
                 
                 chdir(current);
@@ -54,13 +55,9 @@ int main(int argc, char ** args){
         }
 
         else{
-            printf("Invalid command\n");
+            printf("mkdir : invalid option -- '%s'\n", args[1]);
+			printf("Try 'mkdir --help' for more information.\n");
         }
     }
-
-    else{
-        printf("Too many arguments\n");
-    }
-
     return 0;
 }
