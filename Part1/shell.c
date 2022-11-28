@@ -393,6 +393,11 @@ void * thread_function(void * args){
     for(int i=0;i<index;i++){
         test[i] = arguments[i];
     }
+    
+    if(index == 0){
+        test = arguments;
+    }
+
     if(strcmp(test,"ls") == 0){
         system("gcc ls.c -o ls");
         system(arguments);
