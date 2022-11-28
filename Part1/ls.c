@@ -11,7 +11,7 @@ int main(int argc, char ** args){
     D = opendir(".");
 
     if(D == NULL){
-        printf("Directory does not exist\n");
+        printf("ls : cannot access %s : No such file or directory\n", args[1]);
     }
 
    if(argc == 1){
@@ -47,12 +47,10 @@ int main(int argc, char ** args){
         }
 
         else{
-            printf("Invalid command\n");
+            printf("ls : invalid option -- '%s'\n", args[1]);
+			printf("Try 'ls --help' for more information.\n");
+	
         }
-   }
-
-   else{
-         printf("Too many arguments\n");
    }
    
    return 0;
